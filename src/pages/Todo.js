@@ -45,17 +45,17 @@ const Todo = () => {
                             <div>목표작성</div>
                             <div onChange={InputChange}>
                                 <div>
-                                    <input name='title' placeholder='제목' />
+                                    <input className="modalinput" name='title' placeholder='제목' />
                                 </div>
                                 <div>
-                                    <input name='description' placeholder='내용' />
+                                    <input className="modalinput" name='description' placeholder='내용' />
                                 </div>
                                 <div>
-                                    <input name='start_date' placeholder='시작일' />
-                                    <input name='end_date' placeholder='종료일' />
+                                    <input className="modalinput" name='start_date' placeholder='시작일' />
+                                    <input className="modalinput" name='end_date' placeholder='종료일' />
                                 </div>
                             </div>
-                            <div onClick={() => Write()}>작성 완료</div>
+                            <div className="modalbutton" onClick={() => Write()}>작성 완료</div>
                         </div>
                     </div>
                 }
