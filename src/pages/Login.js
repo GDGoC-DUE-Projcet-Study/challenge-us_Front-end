@@ -22,13 +22,23 @@ const LogIn = () => {
     };
 
     function UserLogIn() {
-        console.log(user.id)
-        //const userid = user.id
-        axios.get('http://127.0.0.1:8080/user/get/'+user.id)
+        axios.post('http://127.0.0.1:8080/user/login',user)
         .then((req)=>{
-        console.log("로그인")
-        console.log(req.data)
-        navigate('./todo')
+            console.log(req)
+            if(req.data==="iderr"){
+                alert("존재하지 않는 아이디 입니다.")
+            }
+            else if (req.data==="pwerr"){
+                alert("비밀번호가 일치하지 않습니다.")
+            }
+            else {
+                alert("로그인 성공")
+                navigate('./todo')
+            }
+
+        })
+        .catch((err)=>{
+            alert("존재하지 않는 아이디 입니다.")
         })
     }
 
