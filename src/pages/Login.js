@@ -22,11 +22,13 @@ const LogIn = () => {
     };
 
     function UserLogIn() {
-        axios.get(`http://127.0.0.1:8080/user/get`,{"id":"아이디"})
+        console.log(user.id)
+        //const userid = user.id
+        axios.get('http://127.0.0.1:8080/user/get/'+user.id)
         .then((req)=>{
         console.log("로그인")
-        console.log(user)
-        navigate('./todo')
+        console.log(req.data)
+        //navigate('./todo')
         })
     }
 
