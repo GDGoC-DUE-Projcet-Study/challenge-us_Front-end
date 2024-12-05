@@ -1,0 +1,32 @@
+.wrap {
+    text-align: center;
+}
+
+.title {
+    font-size:2rem;
+    margin: 3rem;
+    margin-bottom: 3rem;
+}
+
+.input {
+    height: 1.5rem;
+    width: 12rem;
+    margin-bottom: 0.5rem;
+
+}
+
+.button {
+    text-align: center;
+    vertical-align: middle;
+    color:white;
+    background-color:#282c34;
+    height: 2rem;
+    width: 12rem;
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    padding-top: 0.5rem;
+    border-radius: 15px;
+
+}

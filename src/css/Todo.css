@@ -1,0 +1,50 @@
+.wrap {
+    text-align: center;
+}
+
+.title {
+    font-size: 2rem;
+    margin: 1rem;
+}
+
+.input {
+    height: 1.5rem;
+    width: 12rem;
+    margin-bottom: 0.5rem;
+
+}
+
+.modalbutton {
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    background-color: #282c34;
+    height: 2rem;
+    width: 12rem;
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    padding-top: 0.5rem;
+    border-radius: 15px;
+}
+
+.Modal {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* modal창 */
+.modalBody {
+    background-color: #ffffff;
+    width: 12rem;
+    height: 16rem;
+    padding: 1rem;
+}

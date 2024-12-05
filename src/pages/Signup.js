@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-//import axios from "axios";
+import axios from 'axios';
 
 const SignUp = () => {
 
@@ -19,11 +19,21 @@ const SignUp = () => {
         console.log(user)
     };
 
-    function UserSignUp(){
-        //axios.post(`https://127.0.0.1:8080/user/create`,{user})
-        //.then((req)=>{
-            console.log("회원가입")
-        //})
+
+
+    function UserSignUp() {
+        axios.post('http://127.0.0.1:8080/user/create',user)
+        .then((req) => {
+            if(req==="회원가입완료"){
+                console.log(req)
+            }else{
+                //msg를 다루는 부분
+            }
+        }).catch((err) => {
+            console.log(err)
+        })
+
+
     }
 
     return (
@@ -36,13 +46,13 @@ const SignUp = () => {
                     <input name='id' placeholder='아이디' value={user.id} />
                 </div>
                 <div>
-                    <input name='pw' placeholder='비밀번호' value={user.pw}/>
+                    <input name='pw' placeholder='비밀번호' value={user.pw} />
                 </div>
                 <div>
-                    <input name='name' placeholder='이름' value={user.name}/>
+                    <input name='name' placeholder='이름' value={user.name} />
                 </div>
                 <div>
-                    <input name='phone' placeholder='전화번호' value={user.phone}/>
+                    <input name='phone' placeholder='전화번호' value={user.phone} />
                 </div>
             </div>
             <div onClick={UserSignUp}>회원가입</div>

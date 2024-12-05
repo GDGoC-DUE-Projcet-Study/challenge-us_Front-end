@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import '../css/Todo.css'
 
 const Todo = () => {
 
@@ -31,30 +31,33 @@ const Todo = () => {
 
     return (
         <React.Fragment>
-            <div>
-                My Todo
-            </div>
-            <div onClick={() => setModalOpen(true)}>
-                +
-            </div>
-            {
-                ModalOpen &&
-                <div>
-                    <div onChange={InputChange}>
-                        <div>
-                            <input name='title' placeholder='제목' />
-                        </div>
-                        <div>
-                            <input name='description' placeholder='내용' />
-                        </div>
-                        <div>
-                            <input name='start_date' placeholder='시작일' />
-                            <input name='end_date' placeholder='종료일' />
-                        </div>
-                    </div>
-                    <div onClick={() => Write()}>작성 완료</div>
+            <div className={ModalOpen?'Modal':''}>
+                <div className="title">
+                    My Todo
                 </div>
-            }
+                <div className="modalbutton" onClick={() => setModalOpen(true)}>
+                    목표 추가
+                </div>
+                {
+                    ModalOpen &&
+                    <div className="modalBody">
+                        <div onChange={InputChange}>
+                            <div>
+                                <input name='title' placeholder='제목' />
+                            </div>
+                            <div>
+                                <input name='description' placeholder='내용' />
+                            </div>
+                            <div>
+                                <input name='start_date' placeholder='시작일' />
+                                <input name='end_date' placeholder='종료일' />
+                            </div>
+                        </div>
+                        <div onClick={() => Write()}>작성 완료</div>
+                    </div>
+
+                }
+            </div>
         </React.Fragment>
     )
 }
