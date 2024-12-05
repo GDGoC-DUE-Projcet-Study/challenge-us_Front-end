@@ -28,7 +28,7 @@ const LogIn = () => {
         .then((req)=>{
         console.log("로그인")
         console.log(req.data)
-        //navigate('./todo')
+        navigate('./todo')
         })
     }
 

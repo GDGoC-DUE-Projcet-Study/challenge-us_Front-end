@@ -31,7 +31,7 @@ const Todo = () => {
 
     return (
         <React.Fragment>
-            <div className={ModalOpen?'Modal':''}>
+            <div className={ModalOpen ? 'Modal' : ''}>
                 <div className="title">
                     My Todo
                 </div>
@@ -40,22 +40,24 @@ const Todo = () => {
                 </div>
                 {
                     ModalOpen &&
-                    <div className="modalBody">
-                        <div onChange={InputChange}>
-                            <div>
-                                <input name='title' placeholder='제목' />
+                    <div className="modaloverlay" onClick={() => setModalOpen(false)}>
+                        <div className="modalcontent">
+                            <div>목표작성</div>
+                            <div onChange={InputChange}>
+                                <div>
+                                    <input name='title' placeholder='제목' />
+                                </div>
+                                <div>
+                                    <input name='description' placeholder='내용' />
+                                </div>
+                                <div>
+                                    <input name='start_date' placeholder='시작일' />
+                                    <input name='end_date' placeholder='종료일' />
+                                </div>
                             </div>
-                            <div>
-                                <input name='description' placeholder='내용' />
-                            </div>
-                            <div>
-                                <input name='start_date' placeholder='시작일' />
-                                <input name='end_date' placeholder='종료일' />
-                            </div>
+                            <div onClick={() => Write()}>작성 완료</div>
                         </div>
-                        <div onClick={() => Write()}>작성 완료</div>
                     </div>
-
                 }
             </div>
         </React.Fragment>
