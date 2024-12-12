@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import '../css/Todo.css'
+import axios from "axios";
 
 const Todo = () => {
 
+    var userId = localStorage.getItem('id');
+
+    const [todolist, setLists] = useState([]);
     const [ModalOpen, setModalOpen] = useState(false);
 
     const [todo, setTodo] = useState({
         title: '',
         description: '',
-        start_date: '',
-        end_date: ''
+        //start_date: '',
+        //end_date: ''
     });
 
     const InputChange = event => {
@@ -22,12 +26,37 @@ const Todo = () => {
     };
 
     function Write() {
+        axios.post(`http://127.0.0.1:8080/todo/create?id=${userId}`, todo)
+            .then((res) => {
+                if (res) {
+                    console.log(res.data)
+                    setLists(res.data)
+                } else {
+                    //msg를 다루는 부분
+                }
+            }).catch((err) => {
+                console.log(err)
+            })
         setModalOpen(false)
-        //axios.post(`https://127.0.0.1:8080/todo/create`,{user})
-        //.then((req)=>{
-        console.log("목표생성")
-        //})
     }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            console.log(userId)
+            await axios.get(`http://127.0.0.1:8080/todo/get/${userId}`)
+                .then((res) => {
+                    try {
+                        console.log(res.data)
+                        setLists(res.data);
+                    } catch {
+                        return
+                    }
+                })
+        }
+
+        fetchData();
+    }, [setLists]);
+
 
     return (
         <React.Fragment>
@@ -39,9 +68,24 @@ const Todo = () => {
                     목표 추가
                 </div>
                 {
+                    todolist.length === 0 ?
+                        (
+                            <div>목표를 등록해주세요</div>
+                        ) :
+                        todolist.map((item, index) => {
+                            return (
+                                <div key={index}>
+                                    <div>{item.title}</div>
+                                </div>
+                            )
+                        })
+                }
+
+                {
                     ModalOpen &&
-                    <div className="modaloverlay" onClick={() => setModalOpen(false)}>
+                    <div className="modaloverlay">
                         <div className="modalcontent">
+                            <div className="modalcolsebutton" onClick={() => setModalOpen(false)}>X</div>
                             <div>목표작성</div>
                             <div onChange={InputChange}>
                                 <div>

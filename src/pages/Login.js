@@ -32,7 +32,9 @@ const LogIn = () => {
                 alert("비밀번호가 일치하지 않습니다.")
             }
             else {
+                console.log(req.data)
                 alert("로그인 성공")
+                localStorage.setItem("id",user.id)
                 navigate('./todo')
             }
 
