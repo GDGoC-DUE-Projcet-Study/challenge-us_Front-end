@@ -12,6 +12,7 @@ const Todo = () => {
     const [todo, setTodo] = useState({
         title: '',
         description: '',
+        complete: false,
         //start_date: '',
         //end_date: ''
     });
@@ -40,13 +41,50 @@ const Todo = () => {
         setModalOpen(false)
     }
 
+    function Delete(item) {
+        axios.delete(`http://127.0.0.1:8080/todo/delete/?id=${userId}&idx=${item.idx}`)
+            .then((res) => {
+                if (res) {
+                    setLists(res.data)
+                } else {
+                    //msg를 다루는 부분
+                }
+            }).catch((err) => {
+                console.log(err)
+            })
+    }
+
+    function Update(item) {
+        if(item.complete){
+            setTodo(item => ({
+                ...item,
+                complete:false,
+            }));
+        }
+        else{
+            setTodo(item => ({
+                ...item,
+                complete:true,
+            }));
+        }
+        axios.put(`http://127.0.0.1:8080/todo/delete/?id=${userId}&idx=${item.idx}`, todo)
+        .then((res) => {
+            if (res) {
+                setLists(res.data)
+            } else {
+                //msg를 다루는 부분
+            }
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
     useEffect(() => {
         const fetchData = async () => {
-            console.log(userId)
+            //console.log(userId)
             await axios.get(`http://127.0.0.1:8080/todo/get/${userId}`)
                 .then((res) => {
                     try {
-                        console.log(res.data)
+                        //console.log(res.data)
                         setLists(res.data);
                     } catch {
                         return
@@ -64,9 +102,6 @@ const Todo = () => {
                 <div className="title">
                     My Todo
                 </div>
-                <div className="modalbutton" onClick={() => setModalOpen(true)}>
-                    목표 추가
-                </div>
                 {
                     todolist.length === 0 ?
                         (
@@ -75,7 +110,14 @@ const Todo = () => {
                         todolist.map((item, index) => {
                             return (
                                 <div key={index}>
-                                    <div>{item.title}</div>
+                                    <div className="list">
+                                        <input type="checkbox" className="tododone" checked={item.complete} onClick={() => Update(item)} />
+                                        <div className="tododelete" onClick={() => Delete(item)}>삭제</div>
+                                        <div>
+                                            <div className="todotitle">{item.title}</div>
+                                            <div className="todocontent">{item.description}</div>
+                                        </div>
+                                    </div>
                                 </div>
                             )
                         })
@@ -103,6 +145,9 @@ const Todo = () => {
                         </div>
                     </div>
                 }
+                <div className="modalbutton" onClick={() => setModalOpen(true)}>
+                    목표 추가
+                </div>
             </div>
         </React.Fragment>
     )

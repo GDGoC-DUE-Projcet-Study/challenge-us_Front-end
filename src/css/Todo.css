@@ -60,3 +60,38 @@
 .modalcolsebutton {
     float: right;
 }
+
+.list:hover {
+    background-color: #f0f0f0;
+  }
+
+.todotitle {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.todocontent {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+    max-height: 3.6em; /* 내용의 최대 높이 제한 */
+    overflow: hidden;  /* 내용이 넘칠 경우 숨기기 */
+    text-overflow: ellipsis; /* 넘친 텍스트에 '...' 추가 */
+    border-bottom:1px solid #000000;
+    padding-left:2rem;
+  }
+
+  .list:hover .todocontent {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .tododelete {
+    float: right;
+    margin-right: 1rem;
+  }
+
+  .tododone {
+    float: left;
+    margin-left: 1rem;
+  }

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import '../css/Signup.css';
 
 const SignUp = () => {
+
+    const navigate = useNavigate();
 
     const [user, setUser] = useState({
         id: '',
@@ -25,11 +28,8 @@ const SignUp = () => {
     function UserSignUp() {
         axios.post('http://127.0.0.1:8080/user/create',user)
         .then((req) => {
-            if(req==="회원가입완료"){
-                console.log(req)
-            }else{
-                //msg를 다루는 부분
-            }
+            console.log(req)
+            navigate('./')
         }).catch((err) => {
             console.log(err)
         })
@@ -41,7 +41,7 @@ const SignUp = () => {
         <React.Fragment>
             <div className="wrap">
             <div className="title">
-                회원가입
+                내정보
             </div>
             <div onChange={InputChange}>
                 <div>
