@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import '../css/Todo.css'
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Todo = () => {
 
@@ -8,6 +9,8 @@ const Todo = () => {
 
     const [todolist, setLists] = useState([]);
     const [ModalOpen, setModalOpen] = useState(false);
+
+    const navigate = useNavigate();
 
     const [todo, setTodo] = useState({
         title: '',
@@ -23,8 +26,11 @@ const Todo = () => {
             ...todo,
             [name]: value,
         }));
-        console.log(todo)
     };
+
+    function userpage() {
+        navigate('../user')
+    }
 
     function Write() {
         axios.post(`http://127.0.0.1:8080/todo/create?id=${userId}`, todo)
@@ -101,6 +107,9 @@ const Todo = () => {
             <div className={ModalOpen ? 'Modal' : ''}>
                 <div className="title">
                     My Todo
+                </div>
+                <div className="info" onClick={()=>userpage()}>
+                    내정보
                 </div>
                 {
                     todolist.length === 0 ?

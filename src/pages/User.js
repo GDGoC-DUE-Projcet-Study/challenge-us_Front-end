@@ -30,21 +30,6 @@ const User = () => {
             })
     }
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         //console.log(userId)
-    //         await axios.get(`http://127.0.0.1:8080/todo/get/${userId}`)
-    //             .then((res) => {
-    //                 try {
-    //                     console.log(res.data)
-    //                     getUser(res.data)
-    //                 } catch {
-    //                     return res
-    //                 }
-    //             })
-    //     }
-    //     fetchData();
-    // }, []);
     return (
         <React.Fragment>
             <div className="wrap">
@@ -73,7 +58,7 @@ const User = () => {
                             <div>
                                 <div onChange={InputChange}>
                                     <div>
-                                        <input className="input" name='id' placeholder='아이디' />
+                                        <input className="input" name='id' placeholder={userId}/>
                                     </div>
                                     <div>
                                         <input className="input" name='pw' placeholder='비밀번호' />
