@@ -63,17 +63,20 @@ const Todo = () => {
     function Update(item) {
         if(item.complete){
             setTodo(item => ({
-                ...item,
+                title: item.title,
+                description: item.description,
                 complete:false,
             }));
         }
         else{
             setTodo(item => ({
-                ...item,
+                title: item.title,
+                description: item.description,
                 complete:true,
             }));
         }
-        axios.put(`http://127.0.0.1:8080/todo/delete/?id=${userId}&idx=${item.idx}`, todo)
+        console.log(todo)
+        axios.put(`http://127.0.0.1:8080/todo/update/?id=${userId}&idx=${item.idx}`, todo)
         .then((res) => {
             if (res) {
                 setLists(res.data)
